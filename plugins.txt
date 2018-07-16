@@ -1,3 +1,0 @@
-reverse-proxy-auth-plugin
-permissive-script-security
-startup-trigger-plugin
