@@ -48,7 +48,7 @@ RUN pip install ansible
 RUN pip install yamlreader
 
 #Jenkins
-RUN wget http://updates.jenkins-ci.org/download/war/2.153/jenkins.war
+RUN wget http://updates.jenkins-ci.org/download/war/2.154/jenkins.war
 
 #Trust Github, this is needed for SCM Configuration Plugin
 RUN mkdir -p /root/.ssh && \
