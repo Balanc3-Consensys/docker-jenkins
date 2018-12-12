@@ -1,8 +1,6 @@
 FROM ubuntu:16.04 as base
 
 RUN apt-get update
-RUN apt-get install -y locales && locale-gen en_US.UTF-8 && dpkg-reconfigure locales
-ENV LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 # Runit
 RUN apt-get install -y --no-install-recommends runit
@@ -11,14 +9,7 @@ CMD bash -c 'export > /etc/envvars && /usr/sbin/runsvdir-start'
 # Utilities
 RUN apt-get install -y --no-install-recommends wget curl git unzip python ssh
 
-#Install Oracle Java 8
-RUN add-apt-repository ppa:webupd8team/java -y && \
-    apt-get update && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -y oracle-java8-installer && \
-    apt install oracle-java8-unlimited-jce-policy && \
-    rm -r /var/cache/oracle-jdk8-installer
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+RUN apt-get install default-jdk
 
 #Docker client only
 RUN wget -O - https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar zx -C /usr/local/bin --strip-components=1 docker/docker
