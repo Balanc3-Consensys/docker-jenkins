@@ -1,15 +1,15 @@
 FROM ubuntu:16.04 as base
 
-RUN apt-get update
+RUN apt update
 
 # Runit
-RUN apt-get install -y --no-install-recommends runit
+RUN apt install -y --no-install-recommends runit
 CMD bash -c 'export > /etc/envvars && /usr/sbin/runsvdir-start'
 
 # Utilities
-RUN apt-get install -y --no-install-recommends wget curl git unzip python ssh
+RUN apt install -y --no-install-recommends wget curl git unzip python ssh
 
-RUN apt-get install default-jdk
+RUN apt install -y default-jdk
 
 #Docker client only
 RUN wget -O - https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar zx -C /usr/local/bin --strip-components=1 docker/docker
@@ -24,7 +24,7 @@ RUN cd /usr/bin && \
     chmod +x kubectl
 
 #Ansible
-RUN apt-get install -y libssl-dev libffi-dev python-dev python-pip
+RUN apt install -y libssl-dev libffi-dev python-dev python-pip
 RUN pip install --upgrade setuptools
 RUN pip install httplib2
 RUN pip install ansible
