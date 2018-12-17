@@ -7,7 +7,7 @@ RUN apt install -y --no-install-recommends runit
 CMD bash -c 'export > /etc/envvars && /usr/sbin/runsvdir-start'
 
 # Utilities
-RUN apt install -y --no-install-recommends wget curl git unzip python ssh jq
+RUN apt install -y --no-install-recommends wget curl git unzip python ssh jq gettext
 
 RUN apt install -y default-jdk
 
